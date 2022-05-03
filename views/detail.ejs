@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta ch arset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/detail.css"/>
+  <title>E-COM | <%= data.name %></title>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+<a id="home" class="btn" href="/">Home</a>
+<table id="tab">
+  <tr>
+  <td id="img_box"><img src="<%= data.link %>" id="p_img"></td>
+  <td id="det">
+    <h1><%= data.name %></h1>
+    <div id="desc"><%= data.description %></div>
+    <div id="price">₹ <%= data.price %></div><br>
+    <a href="/addToCart/<%= data._id %>" class="btn btn-danger">Add to Cart</a>
+  </td>
+  </tr>
+</table>
+
+</body>
+</html>

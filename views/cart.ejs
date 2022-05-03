@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta ch arset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="cart.css"/>
+  <title>E-COM | Cart</title>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+  <center><h1>Welcome To Cart <%= username %> </h1></center>
+  <a id="home" class="btn" href="/">Home</a>
+  <a id="logout" class="btn" href="/logout">Logout</a>
+
+  <% if( products.length == 0){ %>
+    <p id="emt">Cart is Empty... 😵‍💫</p>
+  <% } %>
+  <div id="p_cards">
+      <% products.forEach((data) => { %>
+        <div class="card">
+          <img src="<%= data.pro.link %>" class="card-img-top">
+
+          <div class="card-body">
+            <div class="card-title"><%= data.pro.name %></div>
+            <div>Price : <%= data.pro.price %></div>
+            <span id="pro_id"><%= data.pro._id %></span>
+            <div id="cardQuan">Quantity : &nbsp;&nbsp;
+              <% if(data.quant == 1){ %>
+                <button class="btn btn-info" id="q_minus" disabled>-</button>
+              <% }else{ %>
+                <a href="/minus/<%= data.pro._id %>"><button class="btn btn-info" id="q_minus">-</button></a>
+              <% } %>
+              &nbsp;<span><%= data.quant %></span>&nbsp;&nbsp;
+              <% if(data.quant == 10){ %>
+                <button class="btn btn-info" id="q_plus" disabled>+</button>
+              <% }else{ %>
+                <a href="/plus/<%= data.pro._id %>"><button class="btn btn-info" id="q_plus">+</button></a>
+              <% } %>
+            </div>
+            <a href="/removeCart/<%= data.pro._id %>"><button class="btn btn-primary">Remove</button></a><a href="/getDetails/<%= data.pro._id %>"><button class="btn btn-danger">View Desc</button></a>
+          </div>
+        </div>
+      <% }) %>
+  </div>
+
+  <% if(products.length != 0){ %>
+    <br /><br />
+    <hr />
+    <div id="bill"><h2>Total :</h3><span id="total">₹ <%= sum %></span></div>
+    <br />
+    <div style="display:flex;"><a href="/checkout/<%= sum %>" class="btn btn-primary" id="checkout">Pay Now</a></div>
+  <% } %>
+
+</body>
+</html>

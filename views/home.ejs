@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta ch arset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="home.css"/>
+  <title>E-COM | Home</title>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<% if(!user) {%>
+
+<center><h1>WELCOME</h1>
+
+<div id="box">
+  <a href="/login" id="login" class="btn btn-danger">Login</a>
+  <a href="/signup" id="signup" class="btn btn-primary">SignUp</a>
+</div>
+</center>
+
+<% } else {%>
+  <div id="btn">
+    <a id="logout"  class="btn" href="/logout">Logout</a><br>
+    <a id="cart" class="btn" href="/userCart">Go to Cart</a>
+  </div>
+  <center><h1>Welcome <%= username %> </h1></center>
+<% } %>
+
+<div id="p_cards">
+  <% if(products != null){ %>
+    <% products.forEach((data) => { %>
+      <div class="card">
+        <img src="<%= data.link %>" class="card-img-top">
+
+        <div class="card-body">
+          <div class="card-title"><%= data.name %></div>
+          <div>Price : <%= data.price %></div>
+          <a href="/addToCart/<%= data._id %>"><button class="btn btn-primary">Add To Cart</button></a><a href="/getDetails/<%= data._id %>"><button class="btn btn-danger">View Desc</button></a>
+        </div>
+      </div>
+    <% }) %>
+  <% } %>
+</div>
+
+</body>
+</html>

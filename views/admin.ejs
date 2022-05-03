@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta ch arset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="admin.css"/>
+  <title>E-COM | Admin</title>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+  <a href="/logout"><button class="btn btn-danger" id="logout">Logout</button></a>
+  <center><h1>Welcome Admin</h1><br>
+  <a href="/showlist"><button class="btn btn-info" id="p_list">View Product List</button></a>
+  </center>
+  <form class="container" action="/addproduct" method="post">
+    <table>
+      <tr>
+        <td>Product Name</td>
+        <td><input type="text" name="name" id="p_name" required placeholder="Product Name" /></td>
+      </tr>
+      <tr>
+        <td>Product Description</td>
+        <td><input type="text" name="description" id="p_desc" required placeholder="Product Description" /></td>
+      </tr>
+      <tr>
+        <td>Product Price</td>
+        <td><input type="number" name="price" id="p_price" required placeholder="Product Price" /></td>
+      </tr>
+      <tr>
+        <td>Product Quantity</td>
+        <td><input type="number" name="quantity" id="p_quan" required placeholder="Product Quantity" /></td>
+      </tr>
+      <tr>
+        <td>Product Image</td>
+        <td><input type="text" name="link" id="p_link" placeholder="Image Link" /></td>
+      </tr>
+      <tr>
+        <td  colspan="2"><br><input type="submit" id="add_product" class="btn btn-primary" value="Add Product" />
+      </tr>
+    </table>
+  </form>
+  
+  <div id="p_cards">
+  <% if(products != null){ %>
+    <% products.forEach((data) => { %>
+      <div class="card">
+        <% if(data.link){ %>
+          <img src="<%= data.link %>" class="card-img-top">
+        <% }else{ %>
+          <img src="https://redzonekickboxing.com/wp-content/uploads/2017/04/default-image-620x600.jpg" class="card-img-top">
+        <% } %>
+
+        <div class="card-body">
+        <form method="post" action="/edit/<%= data._id %>">
+          <div>Product Name : <input type="text" name="name" value="<%= data.name %>" /></div>
+          <div>Product Description : <input type="text" name="description" value="<%= data.description %>" /></div>
+          <div>Product Price : <input type="number" name="price" value="<%= data.price %>" /></div>
+          <div>Product Quantity : <input type="number" name="quantity" value="<%= data.quantity %>" /></div>
+          <div>Image Link : <input type="text" name="link" value="<%= data.link %>" /></div>
+          <a><input type="submit" value="Update" class="btn btn-primary" /></a><a href="/delete/<%= data._id %>" class="btn btn-danger">Delete</a>
+        </form>
+        </div>
+      </div>
+    <% }) %>
+  <% } %>
+  </div>
+
+  <script src = "admin.js"></script>
+</body>
+</html>

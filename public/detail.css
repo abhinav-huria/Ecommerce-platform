@@ -1,0 +1,47 @@
+body{
+    margin-left: 25%!important;
+    margin-top: 80px!important;
+    font-family: ui-sans-serif !important;
+    background-color: rgb(226, 224, 224)!important;
+  }
+  
+  #p_img{
+    width:450px;
+  }
+  
+  #home{
+    background-color: rgb(140, 0, 255);
+    color:white;
+    font-size:1.2rem;
+    max-width:150px;
+    width:10%;
+    position: absolute;
+    left:25px;
+    top:30px;
+  }
+  
+  #tab{
+    width:60%;
+    background-color: white;
+    border: 1px solid black;
+  }
+  
+  #det{
+    display: flex;
+    flex-direction: column;
+    padding:50px 50px;
+  }
+  
+  #desc{
+    font-size: 1.1rem;
+    color:rgb(157, 157, 157);
+  }
+  
+  #price{
+    font-size: 1.4rem;
+    font-weight: bold;
+  }
+  
+  #img_box{
+    padding: 0px 0px;
+  }
